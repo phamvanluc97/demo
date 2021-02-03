@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zay Shop - Product Detail Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="/css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+    <div class="container">
+    <div class="mb-3">
+    <label for="category_name" class="form-label">Product Name</label>
+    <input type="text" class="form-control" name="product_name">
+    <label for="category_name" class="form-label"> Decription</label>
+    <input type="text" class="form-control" name="product_description">
+    <label for="category_name" class="form-label"> Price</label>
+    <input type="number" class="form-control" name="product_price">
+    <label for="category_name" class="form-label"> Image</label>
+    <input type="file" class="form-control" name="product_image">
+    <br>
+    <label for="category_name"> Category</label>
+    <select name="product_category">
+        {{#each category}}
+            <option label="{{this.category_name}}" value="{{this._id}}"></option>
+        {{/each}}
+    </select>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+    </div>
+</form>
+
+<script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/templatemo.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Zay Shop - Product Detail Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="/css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+</head>
+<body>
+<div class="d-flex align-items-start mt-3">
+  <div class="nav flex-column nav-pills me-3 mb-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <a class="nav-link active mb-2" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Products</a>
+    <a class="nav-link mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Category</a>
+    <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Admin</a>
+    <a class="nav-link mb-2" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Manager</a>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+    <div class="mb-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><a href="/product/add" class="btn btn-primary">New</a></th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Image</th>
+          <th scope="col">createdAt</th>
+          <th >Action</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each product}}
+        <tr>
+          <th scope="row">{{ sum @index 1}}</th>
+          <td>{{this.product_name}}</td>
+          <td>{{this.product_description}}</td>
+          <td>{{this.product_price}}</td>
+          <td><img src="/upload/{{this.product_image}}" width="50px"></td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href="/product/edit/{{this._id}}" class="btn btn-info mb-3">Update</a>
+          </td>
+          <td>
+            <form method="POST" action="/product/delete/{{this._id}}?_method=DELETE">
+              <button type="submit" class="btn btn-danger mb-3">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="mb-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><a href="/category/add" class="btn btn-primary">New</a></th>
+            <th scope="col">Name</th>
+            <th scope="col">CreateAt</th>
+            <th scope="col">Image</th>
+            <th colspan="2" >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each category}}
+          <tr>
+            <th scope="row">{{ sum @index 1}}</th>
+            <td>{{this.category_name}}</td>
+            <td>{{this.createdAt}}</td>
+            <td><img src="/upload/{{this.category_image}}" width="75px"></td>
+            <td>
+              <a href="/category/edit/{{this._id}}" class="btn btn-info mb-3">Update</a>
+            </td>
+            <td>
+              <form method="POST" action="/category/delete/{{this._id}}?_method=DELETE">
+                <button type="submit" class="btn btn-danger mb-3">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+    <div class="mb-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Detail Description</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Product Price</th>
+          <th scope="col">Product Image</th>
+          <th scope="col">Product Amount</th>
+          <th >Action</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each cartAdminCheck}}
+        <tr>
+          <th scope="row">{{ sum @index 1}}</th>
+          <td>{{this.cart_username_id.name}}</td>
+          <td>{{this.cart_username_id.address}}</td>
+          <td>{{this.cart_username_id.phone}}</td>
+          <td>{{this.detaildescription}}</td>
+          <td>{{this.cart_product_id.product_name}}</td>
+          <td>{{this.cart_product_id.product_price}}</td>
+          <td><img src="/upload/{{this.cart_product_id.product_image}}" width="50px"></td>
+          <td>{{this.cart_number_product}}</td>
+          <td>
+            <form method="POST" action="/cart/confirm/{{this._id}}?_method=PUT">
+              <button type="submit" class="btn btn-primary mb-3">Confirm</button>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="/cart/deny/{{this._id}}?_method=PUT">
+              <button type="submit" class="btn btn-danger mb-3">Deny</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+
+    </div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Product Received</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Product Deny</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Other</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="mb-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Detail Description</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each cartReceivedCheck}}
+            <tr>
+              <th scope="row">{{ sum @index 1}}</th>
+              <td>{{this.cart_username_id.name}}</td>
+              <td>{{this.cart_username_id.address}}</td>
+              <td>{{this.cart_username_id.phone}}</td>
+              <td>{{this.detaildescription}}</td>
+              <td>{{this.cart_product_id.product_name}}</td>
+              <td>{{this.cart_product_id.product_price}}</td>
+              <td><img src="/upload/{{this.cart_product_id.product_image}}" width="50px"></td>
+              <td>{{this.cart_number_product}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="mb-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Detail Description</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each cartDenyCheck}}
+            <tr>
+              <th scope="row">{{ sum @index 1}}</th>
+              <td>{{this.cart_username_id.name}}</td>
+              <td>{{this.cart_username_id.address}}</td>
+              <td>{{this.cart_username_id.phone}}</td>
+              <td>{{this.detaildescription}}</td>
+              <td>{{this.cart_product_id.product_name}}</td>
+              <td>{{this.cart_product_id.product_price}}</td>
+              <td><img src="/upload/{{this.cart_product_id.product_image}}" width="50px"></td>
+              <td>{{this.cart_number_product}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        </div>
+          </div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+        </div>
+        </div>
+    </div>
+</div>
+  
+    
+
+  <script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/templatemo.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>
+

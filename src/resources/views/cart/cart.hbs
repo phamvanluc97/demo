@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zay Shop - Product Detail Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="/css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+</head>
+<body>
+    <div class="mb-3">
+    <table class="table"> 
+      <thead>
+        <tr>
+          <th scope="col">({{currentuser}})</th>
+          <th scope="col">Name Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Image</th>
+          <th scope="col">Time CreatedAt</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each cart}}
+        <tr>
+          <th scope="row">{{ sum @index 1}}</th>
+          <td>{{this.cart_product_id.product_name}}</td>
+          <td>{{this.cart_product_id.product_price}} VND</td>
+          <td>{{this.cart_number_product}}</td>
+          <td><img src="/upload/{{this.cart_product_id.product_image}}" width="150px"></td>
+          <td>{{this.createdAt}}</td>
+          {{#if this.cart_isBuyCheck}}
+            <td>
+              <a class="btn mb-3 fa fa-check-circle"> Checking</a>
+            </td>
+          {{else if this.cart_isAdminCheck}}
+            <td>
+              <a class="btn mb-3 fa fa-handshake"> Shipping</a>
+            </td>
+          {{else if this.cart_isAdminDeny}}
+            <td>
+              <button onclick="DenyDetail()" type="button" class="btn btn-danger mb-3 ">Admin Deny</button>
+            </td>
+          {{else if this.cart_isReceived}}
+            <td>
+              <button disabled="true" type="button" class="btn btn-info mb-3 ">Received</button>
+            </td>
+          {{else}}
+            <td>
+              <a href="/cart/buy/{{this.cart_product_id.slug}}" class="btn btn-primary mb-3">Buy</a>
+            </td>
+          {{/if}}
+          {{#if this.cart_isAdminCheck}}
+          <td>
+            <form method="POST" action="/cart/received/{{this._id}}?_method=PUT">
+              <button type="submit" class="btn btn-primary mb-3"> Received</button>
+            </form>
+          </td>
+          {{else}}
+          <td>
+            <form method="POST" action="/cart/delete/{{this._id}}?_method=DELETE">
+              <button type="submit" class="btn btn-danger mb-3">Delete</button>
+            </form>
+          </td>
+          {{/if}}
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+    <div>
+      <a class="list-group-item list-group-item-action mb-3" aria-current="true">
+        Total
+        <span class="badge badge-danger float-right">{{totalprice}} VND</span>
+      </a>
+    </div>
+
+  <script>
+    function DenyDetail()
+    {
+      alert('Your Product has been denied by Admin . Please Contact us to for more information')
+    }
+  </script>
+
+  <script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/templatemo.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>

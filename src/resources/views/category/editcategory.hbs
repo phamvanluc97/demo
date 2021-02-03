@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zay Shop - Product Detail Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/templatemo.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="/css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+</head>
+<body>
+    
+    <form method="POST" action="?_method=PUT" enctype="multipart/form-data">
+    <div class="mb-3"><h1>Edit Category</h1></div>
+    <div class="input-group flex-nowrap mb-3">
+    <span class="input-group-text" id="addon-wrapping">Category Name</span>
+    <input type="text" value="{{category.category_name}}" class="form-control" name="category_name">
+    </div>
+    <div class="mb-3">
+    <label for="category_name" class="form-label"> Image</label>
+    <input type="file" class="form-control" name="category_image">
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/admin" class="btn btn-secondary">Back</a>
+    </div>
+    </div>
+</form>
+
+    <script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/templatemo.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>
