@@ -2,8 +2,6 @@ const Cart = require('../models/cart');
 const Product = require('../models/product');
 const { multipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
-const category = require('../models/category');
-const PAGELIMIT = 9;
 class SiteControllers {
   showcart(req, res) {
     Cart.find({ cart_username_id: req.session.loginUser._id })

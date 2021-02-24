@@ -2,9 +2,6 @@ const Category = require('../models/category');
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 const { multipleMongooseToObject } = require('../../util/mongoose');
-const { mongooseToObject } = require('../../util/mongoose');
-const category = require('../models/category');
-const PAGELIMIT = 9;
 class AdminControllers {
   show(req, res, next) {
     Product.find({})
