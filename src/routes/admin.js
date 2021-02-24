@@ -1,9 +1,9 @@
-const express=require('express');
-const router=express.Router();
-const register=require('../middleware/adminmiddleware')
+const express = require('express');
+const router = express.Router();
+const register = require('../middleware/adminmiddleware');
 
-const adminController =require('../app/controllers/AdminController');
+const adminController = require('../app/controllers/AdminController');
 
-router.get('/',register,adminController.show);
+router.get('/', register, adminController.show);
 
-module.exports=router;
+module.exports = router;

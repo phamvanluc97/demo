@@ -1,17 +1,15 @@
-h1{
+h1 {
+  color: red;
+}
+.card-img-top {
+  width: 150px;
+  height: 150px;
+}
+.card-item {
+  margin-top: 15px;
+}
+.custom {
+  h3 {
     color: red;
-}
-.card-img-top{
-    width: 150px;
-    height: 150px;
-}
-.card-item
-{
-    margin-top: 15px;
-}
-.custom
-{
-    h3{
-    color: red;
-    }
+  }
 }
